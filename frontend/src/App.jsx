@@ -11,6 +11,7 @@ import Guests from './pages/guests/Guests'
 import AddGuest from './pages/guests/AddGuest'
 import Tasks from './pages/tasks/Tasks'
 import AddTask from './pages/tasks/AddTask'
+import Settings from './pages/profile/Settings'
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
         <Route path="guests" element={<Guests />} />
         <Route path="guests/new" element={<AddGuest />} />
         <Route path="guests/:id/edit" element={<AddGuest />} />
-        <Route path="settings" element={<ComingSoon title="Settings" />} />
+        <Route path="settings" element={<Settings />} />
       </Route>
 
       <Route path="*" element={<ComingSoon title="Page" />} />
