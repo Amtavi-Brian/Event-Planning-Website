@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import TaskItem from '../../components/tasks/TaskItem'
 import EventStatus from '../../components/events/EventStatus'
 import { mockEvents } from './mockEvents'
@@ -22,7 +22,8 @@ const tabs = ['Tasks', 'Guests', 'Details']
 
 function EventDetails() {
   const { id } = useParams()
-  const [activeTab, setActiveTab] = useState('Tasks')
+  const location = useLocation()
+  const [activeTab, setActiveTab] = useState(location.state?.activeTab || 'Tasks')
   const [tasks, setTasks] = useState(initialTasks)
 
   const mockEvent =
