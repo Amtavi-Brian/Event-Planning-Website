@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import TaskItem from '../../components/tasks/TaskItem'
 import EventStatus from '../../components/events/EventStatus'
+import '../../styles/events/EventDetails.css'
 
 const mockEvent = {
   title: 'Birthday Party',
@@ -56,60 +57,51 @@ function EventDetails() {
 
   return (
     <div>
-      <Link
-        to="/dashboard/events"
-        className="inline-flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-gray-700 mb-4"
-      >
+      <Link to="/dashboard/events" className="back-link">
         ← Back to My Events
       </Link>
 
       {/* Header */}
-      <div className="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between mb-6">
-        <div className="flex items-center gap-4">
-          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-purple-100 text-3xl">
-            {mockEvent.emoji}
-          </div>
+      <div className="event-details__header">
+        <div className="event-details__title-block">
+          <div className="event-details__thumbnail">{mockEvent.emoji}</div>
           <div>
-            <h1 className="text-xl font-bold text-gray-900">
-              {mockEvent.title}
-            </h1>
-            <p className="text-sm text-gray-500">
+            <h1 className="event-details__title">{mockEvent.title}</h1>
+            <p className="event-details__meta">
               {mockEvent.date} &bull; {mockEvent.time}
             </p>
-            <p className="text-sm text-gray-500">📍 {mockEvent.location}</p>
+            <p className="event-details__meta">📍 {mockEvent.location}</p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="event-details__actions">
           <Link
             to={`/dashboard/events/${id}/edit`}
-            className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
+            className="btn btn-secondary"
           >
             ✎ Edit Event
           </Link>
           <button
             type="button"
             onClick={handleDelete}
-            className="rounded-lg bg-red-50 px-4 py-2 text-sm font-semibold text-red-600 hover:bg-red-100 transition-colors"
+            className="btn btn-danger"
           >
             Delete Event
           </button>
         </div>
       </div>
 
-      <p className="text-sm text-gray-600 mb-6">{mockEvent.description}</p>
+      <p className="event-details__description">{mockEvent.description}</p>
 
       {/* Tabs */}
-      <div className="flex gap-6 border-b border-gray-200 mb-6">
+      <div className="event-details__tabs">
         {tabs.map((tab) => (
           <button
             key={tab}
             type="button"
             onClick={() => setActiveTab(tab)}
-            className={`pb-3 text-sm font-medium border-b-2 -mb-px transition-colors ${
-              activeTab === tab
-                ? 'border-blue-600 text-blue-600'
-                : 'border-transparent text-gray-500 hover:text-gray-700'
+            className={`event-details__tab${
+              activeTab === tab ? ' event-details__tab--active' : ''
             }`}
           >
             {tab}
@@ -118,12 +110,12 @@ function EventDetails() {
       </div>
 
       {activeTab === 'Tasks' && (
-        <div className="rounded-xl border border-gray-200 bg-white p-4">
-          <div className="flex items-center justify-between mb-2">
-            <h2 className="font-semibold text-gray-900">Planning Tasks</h2>
+        <div className="event-details__panel">
+          <div className="event-details__panel-header">
+            <h2 className="event-details__panel-title">Planning Tasks</h2>
             <Link
               to={`/dashboard/events/${id}/tasks/new`}
-              className="rounded-lg bg-blue-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
+              className="btn btn-primary"
             >
               + Add Task
             </Link>
@@ -135,31 +127,24 @@ function EventDetails() {
       )}
 
       {activeTab === 'Guests' && (
-        <div className="rounded-xl border border-gray-200 bg-white p-4">
-          <div className="flex items-center justify-between mb-2">
-            <h2 className="font-semibold text-gray-900">Guest List</h2>
+        <div className="event-details__panel">
+          <div className="event-details__panel-header">
+            <h2 className="event-details__panel-title">Guest List</h2>
             <Link
               to={`/dashboard/events/${id}/guests/new`}
-              className="rounded-lg bg-blue-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
+              className="btn btn-primary"
             >
               + Add Guest
             </Link>
           </div>
           {mockGuests.map((guest) => (
-            <div
-              key={guest.id}
-              className="flex items-center gap-3 py-3 border-b border-gray-100 last:border-b-0"
-            >
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-xs font-semibold text-blue-700">
+            <div key={guest.id} className="event-details__guest-row">
+              <span className="event-details__guest-avatar">
                 {guest.name.charAt(0)}
               </span>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900">
-                  {guest.name}
-                </p>
-                <p className="text-xs text-gray-400 truncate">
-                  {guest.email}
-                </p>
+              <div className="event-details__guest-body">
+                <p className="event-details__guest-name">{guest.name}</p>
+                <p className="event-details__guest-email">{guest.email}</p>
               </div>
               <EventStatus status={guest.status} />
             </div>
@@ -168,27 +153,33 @@ function EventDetails() {
       )}
 
       {activeTab === 'Details' && (
-        <div className="rounded-xl border border-gray-200 bg-white p-4 space-y-3 text-sm">
+        <div className="event-details__panel event-details__info">
           <div>
-            <p className="text-gray-400">Description</p>
-            <p className="text-gray-900">{mockEvent.description}</p>
+            <p className="event-details__info-label">Description</p>
+            <p className="event-details__info-value">
+              {mockEvent.description}
+            </p>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="event-details__info-grid">
             <div>
-              <p className="text-gray-400">Date</p>
-              <p className="text-gray-900">{mockEvent.date}</p>
+              <p className="event-details__info-label">Date</p>
+              <p className="event-details__info-value">{mockEvent.date}</p>
             </div>
             <div>
-              <p className="text-gray-400">Time</p>
-              <p className="text-gray-900">{mockEvent.time}</p>
+              <p className="event-details__info-label">Time</p>
+              <p className="event-details__info-value">{mockEvent.time}</p>
             </div>
             <div>
-              <p className="text-gray-400">Location</p>
-              <p className="text-gray-900">{mockEvent.location}</p>
+              <p className="event-details__info-label">Location</p>
+              <p className="event-details__info-value">
+                {mockEvent.location}
+              </p>
             </div>
             <div>
-              <p className="text-gray-400">Maximum Guests</p>
-              <p className="text-gray-900">{mockEvent.maxGuests}</p>
+              <p className="event-details__info-label">Maximum Guests</p>
+              <p className="event-details__info-value">
+                {mockEvent.maxGuests}
+              </p>
             </div>
           </div>
         </div>

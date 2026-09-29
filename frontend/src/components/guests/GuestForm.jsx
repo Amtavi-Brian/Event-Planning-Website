@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import '../../styles/guests/GuestForm.css'
 
 const defaultValues = {
   name: '',
@@ -26,12 +27,9 @@ function GuestForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 max-w-md">
-      <div>
-        <label
-          htmlFor="name"
-          className="block text-sm font-medium text-gray-700 mb-1"
-        >
+    <form onSubmit={handleSubmit} className="guest-form">
+      <div className="form-group">
+        <label htmlFor="name" className="form-label">
           Name *
         </label>
         <input
@@ -42,15 +40,12 @@ function GuestForm({
           value={formData.name}
           onChange={handleChange}
           placeholder="e.g. John Doe"
-          className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="form-input"
         />
       </div>
 
-      <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-gray-700 mb-1"
-        >
+      <div className="form-group">
+        <label htmlFor="email" className="form-label">
           Email *
         </label>
         <input
@@ -61,15 +56,12 @@ function GuestForm({
           value={formData.email}
           onChange={handleChange}
           placeholder="e.g. john@example.com"
-          className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="form-input"
         />
       </div>
 
-      <div>
-        <label
-          htmlFor="phone"
-          className="block text-sm font-medium text-gray-700 mb-1"
-        >
+      <div className="form-group">
+        <label htmlFor="phone" className="form-label">
           Phone Number *
         </label>
         <input
@@ -80,15 +72,12 @@ function GuestForm({
           value={formData.phone}
           onChange={handleChange}
           placeholder="e.g. +254 712 345678"
-          className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="form-input"
         />
       </div>
 
-      <div>
-        <label
-          htmlFor="status"
-          className="block text-sm font-medium text-gray-700 mb-1"
-        >
+      <div className="form-group">
+        <label htmlFor="status" className="form-label">
           RSVP Status
         </label>
         <select
@@ -96,7 +85,7 @@ function GuestForm({
           name="status"
           value={formData.status}
           onChange={handleChange}
-          className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="form-select"
         >
           <option value="Pending">Pending</option>
           <option value="Going">Going</option>
@@ -104,18 +93,11 @@ function GuestForm({
         </select>
       </div>
 
-      <div className="flex items-center gap-3 pt-2">
-        <button
-          type="button"
-          onClick={onCancel}
-          className="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
-        >
+      <div className="form-actions">
+        <button type="button" onClick={onCancel} className="btn btn-secondary">
           Cancel
         </button>
-        <button
-          type="submit"
-          className="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
-        >
+        <button type="submit" className="btn btn-primary">
           {submitLabel}
         </button>
       </div>

@@ -22,14 +22,11 @@ function AddGuest() {
 
   return (
     <div>
-      <Link
-        to="/dashboard/guests"
-        className="inline-flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-gray-700 mb-4"
-      >
+      <Link to="/dashboard/guests" className="back-link">
         ← Back to Guests
       </Link>
 
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">
+      <h1 className="page-title-standalone">
         {isEditing ? 'Edit Guest' : 'Add Guest'}
       </h1>
 

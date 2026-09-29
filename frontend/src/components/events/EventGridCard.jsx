@@ -1,11 +1,5 @@
 import { Link } from 'react-router-dom'
-
-const thumbnailColors = {
-  purple: 'bg-purple-100',
-  blue: 'bg-blue-100',
-  green: 'bg-green-100',
-  orange: 'bg-orange-100',
-}
+import '../../styles/events/EventGridCard.css'
 
 function EventGridCard({ event }) {
   const {
@@ -21,28 +15,28 @@ function EventGridCard({ event }) {
   } = event
 
   return (
-    <div className="flex flex-col rounded-xl border border-gray-200 bg-white overflow-hidden">
+    <div className="event-grid-card">
       <div
-        className={`flex h-32 items-center justify-center text-5xl ${thumbnailColors[color]}`}
+        className={`event-grid-card__thumbnail event-grid-card__thumbnail--${color}`}
       >
         {emoji}
       </div>
 
-      <div className="flex flex-1 flex-col p-4">
-        <h3 className="font-semibold text-gray-900">{title}</h3>
-        <p className="text-sm text-gray-500 mt-1">
+      <div className="event-grid-card__body">
+        <h3 className="event-grid-card__title">{title}</h3>
+        <p className="event-grid-card__meta">
           {date} &bull; {time}
         </p>
-        <p className="text-sm text-gray-500">📍 {location}</p>
+        <p className="event-grid-card__meta">📍 {location}</p>
 
-        <div className="flex items-center gap-4 text-xs text-gray-400 mt-3">
+        <div className="event-grid-card__stats">
           <span>✅ {tasksRemaining} tasks</span>
           <span>👥 {guests} guests</span>
         </div>
 
         <Link
           to={`/dashboard/events/${id}`}
-          className="mt-4 w-full rounded-lg bg-blue-600 py-2 text-center text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
+          className="btn btn-primary event-grid-card__view"
         >
           View →
         </Link>

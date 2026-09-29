@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import '../../styles/events/EventForm.css'
 
 const defaultValues = {
   title: '',
@@ -28,12 +29,9 @@ function EventForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 max-w-2xl">
-      <div>
-        <label
-          htmlFor="title"
-          className="block text-sm font-medium text-gray-700 mb-1"
-        >
+    <form onSubmit={handleSubmit} className="event-form">
+      <div className="form-group">
+        <label htmlFor="title" className="form-label">
           Event Title *
         </label>
         <input
@@ -44,15 +42,12 @@ function EventForm({
           value={formData.title}
           onChange={handleChange}
           placeholder="e.g. Birthday Party"
-          className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="form-input"
         />
       </div>
 
-      <div>
-        <label
-          htmlFor="description"
-          className="block text-sm font-medium text-gray-700 mb-1"
-        >
+      <div className="form-group">
+        <label htmlFor="description" className="form-label">
           Description *
         </label>
         <textarea
@@ -63,16 +58,13 @@ function EventForm({
           value={formData.description}
           onChange={handleChange}
           placeholder="Tell us more about your event..."
-          className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+          className="form-textarea"
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div className="form-row form-group">
         <div>
-          <label
-            htmlFor="date"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
+          <label htmlFor="date" className="form-label">
             Date *
           </label>
           <input
@@ -82,15 +74,12 @@ function EventForm({
             required
             value={formData.date}
             onChange={handleChange}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="form-input"
           />
         </div>
 
         <div>
-          <label
-            htmlFor="time"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
+          <label htmlFor="time" className="form-label">
             Time *
           </label>
           <input
@@ -100,17 +89,14 @@ function EventForm({
             required
             value={formData.time}
             onChange={handleChange}
-            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="form-input"
           />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div className="form-row form-group">
         <div>
-          <label
-            htmlFor="location"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
+          <label htmlFor="location" className="form-label">
             Location *
           </label>
           <input
@@ -121,15 +107,12 @@ function EventForm({
             value={formData.location}
             onChange={handleChange}
             placeholder="e.g. Nairobi"
-            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="form-input"
           />
         </div>
 
         <div>
-          <label
-            htmlFor="maxGuests"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
+          <label htmlFor="maxGuests" className="form-label">
             Maximum Guests
           </label>
           <input
@@ -140,23 +123,16 @@ function EventForm({
             value={formData.maxGuests}
             onChange={handleChange}
             placeholder="e.g. 50"
-            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="form-input"
           />
         </div>
       </div>
 
-      <div className="flex items-center gap-3 pt-2">
-        <button
-          type="button"
-          onClick={onCancel}
-          className="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
-        >
+      <div className="form-actions">
+        <button type="button" onClick={onCancel} className="btn btn-secondary">
           Cancel
         </button>
-        <button
-          type="submit"
-          className="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
-        >
+        <button type="submit" className="btn btn-primary">
           {submitLabel}
         </button>
       </div>

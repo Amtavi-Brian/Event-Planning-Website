@@ -1,20 +1,16 @@
-const statusStyles = {
-  Completed: 'bg-green-100 text-green-700',
-  Pending: 'bg-orange-100 text-orange-700',
-  Going: 'bg-green-100 text-green-700',
-  'Not Going': 'bg-red-100 text-red-700',
+import '../../styles/events/EventStatus.css'
+
+const statusModifiers = {
+  Completed: 'status-badge--completed',
+  Pending: 'status-badge--pending',
+  Going: 'status-badge--going',
+  'Not Going': 'status-badge--not-going',
 }
 
 function EventStatus({ status }) {
-  const classes = statusStyles[status] || 'bg-gray-100 text-gray-600'
+  const modifier = statusModifiers[status] || 'status-badge--default'
 
-  return (
-    <span
-      className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium ${classes}`}
-    >
-      {status}
-    </span>
-  )
+  return <span className={`status-badge ${modifier}`}>{status}</span>
 }
 
 export default EventStatus

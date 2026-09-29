@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import '../../styles/profile/Settings.css'
 
 const initialProfile = {
   fullName: 'Brian James',
@@ -31,39 +32,32 @@ function Settings() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">
-        Profile Settings
-      </h1>
+      <h1 className="page-title-standalone">Profile Settings</h1>
 
-      <div className="max-w-2xl rounded-xl border border-gray-200 bg-white p-6">
-        <div className="flex items-center gap-4 mb-6">
-          <span className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-xl font-semibold text-blue-700">
+      <div className="settings-card">
+        <div className="settings-card__profile">
+          <span className="settings-card__avatar">
             {formData.fullName
               .split(' ')
               .map((part) => part.charAt(0))
               .join('')}
           </span>
           <div>
-            <p className="font-semibold text-gray-900">
-              {formData.fullName}
-            </p>
-            <p className="text-sm text-gray-500">{formData.email}</p>
+            <p className="settings-card__name">{formData.fullName}</p>
+            <p className="settings-card__email">{formData.email}</p>
             <button
               type="button"
               onClick={handleChangePhoto}
-              className="mt-1 text-sm font-medium text-blue-600 hover:underline"
+              className="settings-card__change-photo"
             >
               Change Photo
             </button>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div>
-            <label
-              htmlFor="fullName"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="fullName" className="form-label">
               Full Name
             </label>
             <input
@@ -72,15 +66,12 @@ function Settings() {
               type="text"
               value={formData.fullName}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="form-input"
             />
           </div>
 
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">
               Email Address
             </label>
             <input
@@ -89,15 +80,12 @@ function Settings() {
               type="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="form-input"
             />
           </div>
 
-          <div>
-            <label
-              htmlFor="phone"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+          <div className="form-group">
+            <label htmlFor="phone" className="form-label">
               Phone Number
             </label>
             <input
@@ -106,15 +94,12 @@ function Settings() {
               type="tel"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="form-input"
             />
           </div>
 
-          <div>
-            <label
-              htmlFor="bio"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
+          <div className="form-group">
+            <label htmlFor="bio" className="form-label">
               Bio
             </label>
             <textarea
@@ -123,22 +108,15 @@ function Settings() {
               rows={3}
               value={formData.bio}
               onChange={handleChange}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+              className="form-textarea"
             />
           </div>
 
-          <div className="flex items-center gap-3 pt-2">
-            <button
-              type="submit"
-              className="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
-            >
+          <div className="form-actions">
+            <button type="submit" className="btn btn-primary">
               Save Changes
             </button>
-            {saved && (
-              <span className="text-sm font-medium text-green-600">
-                Saved!
-              </span>
-            )}
+            {saved && <span className="settings-card__saved">Saved!</span>}
           </div>
         </form>
       </div>

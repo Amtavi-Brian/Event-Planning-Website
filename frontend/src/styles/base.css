@@ -200,6 +200,10 @@ select {
   box-shadow: 0 0 0 2px var(--color-blue-100);
 }
 
+.search-field--spaced {
+  margin-bottom: var(--space-6);
+}
+
 /* ---------- Shared page bits ---------- */
 .page-header {
   display: flex;
@@ -222,6 +226,13 @@ select {
   color: var(--color-gray-900);
 }
 
+.page-title-standalone {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-bottom: var(--space-6);
+}
+
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -241,4 +252,102 @@ select {
   color: var(--color-gray-500);
   font-size: 14px;
   padding: var(--space-8) 0;
+}
+
+/* ---------- Data table (Tasks / Guests) ---------- */
+.table-card {
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  padding: var(--space-4);
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  min-width: 520px;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.data-table thead tr {
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.data-table th {
+  padding-bottom: var(--space-2);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--color-gray-400);
+}
+
+.data-table .table-cell--right {
+  text-align: right;
+}
+
+.data-table tbody tr {
+  border-bottom: 1px solid var(--color-gray-100);
+}
+
+.data-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.data-table td {
+  padding: var(--space-3) var(--space-4) var(--space-3) 0;
+  font-size: 14px;
+  color: var(--color-gray-500);
+}
+
+.data-table__name-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.data-table__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-blue-100);
+  color: var(--color-blue-700);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.data-table__primary-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-gray-900);
+}
+
+.data-table__primary-text--done {
+  color: var(--color-gray-400);
+  text-decoration: line-through;
+}
+
+.data-table__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+}
+
+.data-table__action {
+  background: none;
+  border: none;
+  color: var(--color-gray-400);
+  font-size: 14px;
+}
+
+.data-table__action:hover {
+  color: var(--color-blue-600);
+}
+
+.data-table__action--danger:hover {
+  color: var(--color-red-600);
 }

@@ -1,35 +1,30 @@
 import EventStatus from '../events/EventStatus'
+import '../../styles/tasks/TaskItem.css'
 
 function TaskItem({ task, onToggle }) {
   const { title, deadline, completed, status } = task
 
   return (
-    <div className="flex items-center gap-3 py-3 border-b border-gray-100 last:border-b-0">
+    <div className="task-item">
       <input
         type="checkbox"
         checked={completed}
         onChange={() => onToggle?.(task.id)}
-        className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+        className="task-item__checkbox"
       />
 
-      <div className="flex-1 min-w-0">
+      <div className="task-item__body">
         <p
-          className={`text-sm font-medium ${
-            completed ? 'text-gray-400 line-through' : 'text-gray-900'
-          }`}
+          className={`task-item__title${completed ? ' task-item__title--done' : ''}`}
         >
           {title}
         </p>
-        {deadline && <p className="text-xs text-gray-400">{deadline}</p>}
+        {deadline && <p className="task-item__deadline">{deadline}</p>}
       </div>
 
       <EventStatus status={status} />
 
-      <button
-        type="button"
-        className="text-gray-400 hover:text-gray-600 px-1"
-        aria-label="Task options"
-      >
+      <button type="button" className="task-item__menu" aria-label="Task options">
         ⋮
       </button>
     </div>
