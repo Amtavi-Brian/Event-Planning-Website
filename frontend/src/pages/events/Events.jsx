@@ -1,54 +1,8 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import EventGridCard from '../../components/events/EventGridCard'
+import { mockEvents as allEvents } from './mockEvents'
 import '../../styles/events/Events.css'
-
-const allEvents = [
-  {
-    id: 1,
-    title: 'Birthday Party',
-    date: 'Oct 12, 2026',
-    time: '2:00 PM',
-    location: 'Nairobi',
-    tasksRemaining: 8,
-    guests: 25,
-    emoji: '🎈',
-    color: 'purple',
-  },
-  {
-    id: 2,
-    title: 'Tech Meetup',
-    date: 'Oct 20, 2026',
-    time: '10:00 AM',
-    location: 'Campus',
-    tasksRemaining: 3,
-    guests: 42,
-    emoji: '💻',
-    color: 'blue',
-  },
-  {
-    id: 3,
-    title: 'Team Building',
-    date: 'Nov 5, 2026',
-    time: '9:00 AM',
-    location: 'Karen',
-    tasksRemaining: 5,
-    guests: 18,
-    emoji: '🤝',
-    color: 'green',
-  },
-  {
-    id: 4,
-    title: 'Workshop',
-    date: 'Nov 15, 2026',
-    time: '1:00 PM',
-    location: 'Nairobi',
-    tasksRemaining: 4,
-    guests: 12,
-    emoji: '🛠️',
-    color: 'orange',
-  },
-]
 
 function Events() {
   const [search, setSearch] = useState('')

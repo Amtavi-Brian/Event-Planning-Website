@@ -7,6 +7,7 @@ import ComingSoon from './components/common/ComingSoon'
 import Events from './pages/events/Events'
 import CreateEvent from './pages/events/CreateEvent'
 import EventDetails from './pages/events/EventDetails'
+import EditEvent from './pages/events/EditEvent'
 import Guests from './pages/guests/Guests'
 import AddGuest from './pages/guests/AddGuest'
 import Tasks from './pages/tasks/Tasks'
@@ -25,7 +26,7 @@ function App() {
         <Route path="events" element={<Events />} />
         <Route path="events/new" element={<CreateEvent />} />
         <Route path="events/:id" element={<EventDetails />} />
-        <Route path="events/:id/edit" element={<ComingSoon title="Edit Event" />} />
+        <Route path="events/:id/edit" element={<EditEvent />} />
         <Route path="events/:id/tasks/new" element={<ComingSoon title="Add Task" />} />
         <Route path="events/:id/guests/new" element={<ComingSoon title="Add Guest" />} />
         <Route path="tasks" element={<Tasks />} />

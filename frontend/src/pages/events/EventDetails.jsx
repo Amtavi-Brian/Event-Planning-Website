@@ -2,17 +2,8 @@ import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import TaskItem from '../../components/tasks/TaskItem'
 import EventStatus from '../../components/events/EventStatus'
+import { mockEvents } from './mockEvents'
 import '../../styles/events/EventDetails.css'
-
-const mockEvent = {
-  title: 'Birthday Party',
-  date: 'October 12, 2026',
-  time: '2:00 PM',
-  location: 'Nairobi',
-  maxGuests: 50,
-  description: 'A birthday celebration with friends and family.',
-  emoji: '🎈',
-}
 
 const initialTasks = [
   { id: 1, title: 'Book venue', deadline: 'Oct 5, 2026', completed: true, status: 'Completed' },
@@ -33,6 +24,9 @@ function EventDetails() {
   const { id } = useParams()
   const [activeTab, setActiveTab] = useState('Tasks')
   const [tasks, setTasks] = useState(initialTasks)
+
+  const mockEvent =
+    mockEvents.find((event) => String(event.id) === id) || mockEvents[0]
 
   const handleToggleTask = (taskId) => {
     setTasks((prev) =>
