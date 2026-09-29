@@ -1,0 +1,128 @@
+.dashboard-layout {
+  min-height: 100vh;
+  display: flex;
+  background: var(--color-gray-50);
+}
+
+.dashboard-layout__sidebar {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .dashboard-layout__sidebar {
+    display: block;
+  }
+}
+
+.dashboard-layout__drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+}
+
+@media (min-width: 768px) {
+  .dashboard-layout__drawer {
+    display: none;
+  }
+}
+
+.dashboard-layout__drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.dashboard-layout__drawer-panel {
+  position: relative;
+  height: 100%;
+  width: var(--sidebar-width);
+}
+
+.dashboard-layout__main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.dashboard-layout__mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-gray-200);
+  background: var(--color-white);
+  padding: 12px var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .dashboard-layout__mobile-header {
+    display: none;
+  }
+}
+
+.dashboard-layout__menu-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: var(--color-gray-600);
+}
+
+.dashboard-layout__mobile-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.dashboard-layout__mobile-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--color-blue-600);
+  color: var(--color-white);
+  font-size: 14px;
+}
+
+.dashboard-layout__mobile-title {
+  font-weight: 700;
+  color: var(--color-gray-900);
+}
+
+.dashboard-layout__mobile-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.dashboard-layout__mobile-bell {
+  background: none;
+  border: none;
+  color: var(--color-gray-500);
+}
+
+.dashboard-layout__mobile-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-blue-100);
+  color: var(--color-blue-700);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.dashboard-layout__content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-6) var(--space-4) 80px;
+}
+
+@media (min-width: 768px) {
+  .dashboard-layout__content {
+    padding: var(--space-8);
+  }
+}

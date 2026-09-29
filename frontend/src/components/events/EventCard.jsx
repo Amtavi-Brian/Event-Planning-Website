@@ -1,11 +1,5 @@
 import { Link } from 'react-router-dom'
-
-const thumbnailColors = {
-  purple: 'bg-purple-100',
-  blue: 'bg-blue-100',
-  green: 'bg-green-100',
-  orange: 'bg-orange-100',
-}
+import '../../styles/events/EventCard.css'
 
 function EventCard({ event }) {
   const {
@@ -21,20 +15,18 @@ function EventCard({ event }) {
   } = event
 
   return (
-    <div className="flex items-center gap-4 rounded-xl border border-gray-200 bg-white p-3">
-      <div
-        className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-lg text-2xl ${thumbnailColors[color]}`}
-      >
+    <div className="event-card">
+      <div className={`event-card__thumbnail event-card__thumbnail--${color}`}>
         {emoji}
       </div>
 
-      <div className="min-w-0 flex-1">
-        <h3 className="truncate font-semibold text-gray-900">{title}</h3>
-        <p className="text-sm text-gray-500">
+      <div className="event-card__body">
+        <h3 className="event-card__title">{title}</h3>
+        <p className="event-card__meta">
           {date} &bull; {time}
         </p>
-        <p className="text-sm text-gray-500">📍 {location}</p>
-        <p className="mt-1 text-xs text-gray-400">
+        <p className="event-card__meta">📍 {location}</p>
+        <p className="event-card__footer">
           {tasksRemaining} tasks remaining
           {typeof guests === 'number' ? ` \u2022 ${guests} guests` : ''}
         </p>
@@ -42,7 +34,7 @@ function EventCard({ event }) {
 
       <Link
         to={`/dashboard/events/${id}`}
-        className="shrink-0 rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
+        className="btn btn-primary event-card__view"
       >
         View →
       </Link>

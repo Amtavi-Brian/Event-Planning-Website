@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import '../../styles/common/Sidebar.css'
 
 const navItems = [
   { to: '/dashboard', label: 'Dashboard', icon: '📊', end: true },
@@ -15,16 +16,14 @@ function Sidebar({ onNavigate }) {
   }
 
   return (
-    <div className="flex h-full w-64 flex-col justify-between bg-[#0f1f3d] text-white px-4 py-6">
+    <div className="sidebar">
       <div>
-        <div className="flex items-center gap-2 px-2 mb-8">
-          <span className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-white/10">
-            📅
-          </span>
-          <span className="text-xl font-bold">EventPlan</span>
+        <div className="sidebar__brand">
+          <span className="sidebar__brand-icon">📅</span>
+          <span className="sidebar__brand-text">EventPlan</span>
         </div>
 
-        <nav className="space-y-1">
+        <nav className="sidebar__nav">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -32,14 +31,10 @@ function Sidebar({ onNavigate }) {
               end={item.end}
               onClick={onNavigate}
               className={({ isActive }) =>
-                `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                  isActive
-                    ? 'bg-white/10 text-white'
-                    : 'text-white/60 hover:bg-white/5 hover:text-white'
-                }`
+                `sidebar__link${isActive ? ' sidebar__link--active' : ''}`
               }
             >
-              <span className="text-base">{item.icon}</span>
+              <span className="sidebar__link-icon">{item.icon}</span>
               {item.label}
             </NavLink>
           ))}
@@ -49,9 +44,9 @@ function Sidebar({ onNavigate }) {
       <button
         type="button"
         onClick={handleLogout}
-        className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-white/60 hover:bg-white/5 hover:text-white transition-colors"
+        className="sidebar__logout"
       >
-        <span className="text-base">⏻</span>
+        <span className="sidebar__link-icon">⏻</span>
         Log Out
       </button>
     </div>

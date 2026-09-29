@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import '../../styles/common/BottomNav.css'
 
 const navItems = [
   { to: '/dashboard', label: 'Home', icon: '🏠', end: true },
@@ -10,19 +11,17 @@ const navItems = [
 
 function BottomNav() {
   return (
-    <nav className="md:hidden fixed bottom-0 inset-x-0 z-30 flex justify-around border-t border-gray-200 bg-white py-2">
+    <nav className="bottom-nav">
       {navItems.map((item) => (
         <NavLink
           key={item.to}
           to={item.to}
           end={item.end}
           className={({ isActive }) =>
-            `flex flex-col items-center gap-0.5 px-2 text-xs ${
-              isActive ? 'text-blue-600' : 'text-gray-400'
-            }`
+            `bottom-nav__link${isActive ? ' bottom-nav__link--active' : ''}`
           }
         >
-          <span className="text-lg">{item.icon}</span>
+          <span className="bottom-nav__icon">{item.icon}</span>
           {item.label}
         </NavLink>
       ))}

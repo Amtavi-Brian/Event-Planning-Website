@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import '../../styles/auth/AuthPage.css'
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false)
@@ -18,69 +19,58 @@ function Login() {
   }
 
   return (
-    <div className="min-h-screen flex bg-white">
-      {/* Left branding panel */}
-      <div className="hidden md:flex md:w-1/2 lg:w-2/5 bg-[#0f1f3d] text-white flex-col justify-between px-10 py-12">
+    <div className="auth-page">
+      {/* Left branding panel (desktop) */}
+      <div className="auth-page__branding">
         <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-white/10">
-              📅
-            </span>
-            <span className="text-2xl font-bold">EventPlan</span>
+          <div className="auth-page__logo">
+            <span className="auth-page__logo-icon">📅</span>
+            <span className="auth-page__logo-text">EventPlan</span>
           </div>
-          <p className="text-sm text-white/60 tracking-wide">
+          <p className="auth-page__tagline">
             Plan &bull; Organize &bull; Make it Happen
           </p>
         </div>
 
         <div>
-          <h1 className="text-3xl font-semibold mb-2">
+          <h1 className="auth-page__headline">
             Your perfect events, well planned.
           </h1>
         </div>
 
-        <div className="flex justify-center">
-          <div className="text-white/20 text-[140px] leading-none">📅</div>
-        </div>
+        <div className="auth-page__illustration">📅</div>
       </div>
 
       {/* Right form panel */}
-      <div className="flex flex-1 flex-col items-center justify-center px-6 py-8 md:py-12">
+      <div className="auth-page__form-panel">
         {/* Mobile-only compact header (replaces the dark branding panel below md) */}
-        <div className="md:hidden w-full max-w-sm mb-6">
+        <div className="auth-page__mobile-header">
           <button
             type="button"
             onClick={() => window.history.back()}
-            className="text-2xl text-gray-400 hover:text-gray-600 mb-4"
+            className="auth-page__back"
             aria-label="Go back"
           >
             ‹
           </button>
-          <div className="flex flex-col items-center text-center">
-            <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-blue-600 text-white mb-2">
-              📅
-            </span>
-            <span className="text-xl font-bold text-gray-900">EventPlan</span>
-            <p className="text-xs text-gray-400 tracking-wide mt-1">
+          <div className="auth-page__mobile-brand">
+            <span className="auth-page__mobile-icon">📅</span>
+            <span className="auth-page__mobile-title">EventPlan</span>
+            <p className="auth-page__mobile-tagline">
               Plan &bull; Organize &bull; Make it Happen
             </p>
           </div>
         </div>
 
-        <div className="w-full max-w-sm">
-          <h2 className="text-2xl font-bold text-gray-900 mb-1">
-            Welcome Back
-          </h2>
-          <p className="text-gray-500 mb-8">
+        <div className="auth-page__content">
+          <h2 className="auth-page__title">Welcome Back</h2>
+          <p className="auth-page__subtitle">
             Sign in to your account to continue
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="email" className="form-label">
                 Email address
               </label>
               <input
@@ -92,18 +82,15 @@ function Login() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="you@example.com"
-                className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="form-input"
               />
             </div>
 
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
+            <div className="form-group">
+              <label htmlFor="password" className="form-label">
                 Password
               </label>
-              <div className="relative">
+              <div className="auth-page__password-field">
                 <input
                   id="password"
                   name="password"
@@ -113,12 +100,12 @@ function Login() {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Enter your password"
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2.5 pr-10 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="form-input"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword((prev) => !prev)}
-                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600"
+                  className="auth-page__toggle-visibility"
                   aria-label={showPassword ? 'Hide password' : 'Show password'}
                 >
                   {showPassword ? '🙈' : '👁️'}
@@ -126,32 +113,28 @@ function Login() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between text-sm">
-              <label className="flex items-center gap-2 text-gray-600">
+            <div className="auth-page__row form-group">
+              <label className="auth-page__remember">
                 <input
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                 />
                 Remember me
               </label>
-              <a href="#" className="text-blue-600 hover:underline">
+              <a href="#" className="btn-link">
                 Forgot password?
               </a>
             </div>
 
-            <button
-              type="submit"
-              className="w-full rounded-lg bg-blue-600 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
-            >
+            <button type="submit" className="btn btn-primary btn-block">
               Login
             </button>
           </form>
 
-          <p className="mt-6 text-center text-sm text-gray-600">
+          <p className="auth-page__footer">
             Don&apos;t have an account?{' '}
-            <Link to="/register" className="text-blue-600 hover:underline">
+            <Link to="/register" className="btn-link">
               Register
             </Link>
           </p>
