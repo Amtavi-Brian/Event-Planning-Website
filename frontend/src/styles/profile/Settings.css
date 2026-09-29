@@ -1,57 +1,173 @@
+.settings-page {
+  max-width: 720px;
+}
+
 .settings-card {
-  max-width: 640px;
   border: 1px solid var(--color-gray-200);
   border-radius: var(--radius-lg);
   background: var(--color-white);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.settings-section {
   padding: var(--space-6);
 }
 
-.settings-card__profile {
+/* ---------- Profile summary ---------- */
+.settings-section--profile {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
-  margin-bottom: var(--space-6);
+  gap: var(--space-5);
+  background: linear-gradient(135deg, var(--color-blue-50), var(--color-white));
 }
 
-.settings-card__avatar {
+.settings-avatar {
+  position: relative;
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+}
+
+.settings-avatar__initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-full);
+  background: var(--color-blue-600);
+  background-image: linear-gradient(135deg, var(--color-blue-500), var(--color-blue-700));
+  color: var(--color-white);
+  font-size: 26px;
+  font-weight: 700;
+  border: 3px solid var(--color-white);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.settings-avatar__edit {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 28px;
+  height: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 64px;
-  height: 64px;
   border-radius: var(--radius-full);
-  background: var(--color-blue-100);
-  color: var(--color-blue-700);
-  font-size: 20px;
-  font-weight: 600;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.15s ease, background-color 0.15s ease;
 }
 
-.settings-card__name {
-  font-weight: 600;
+.settings-avatar__edit:hover {
+  background: var(--color-gray-50);
+  transform: scale(1.05);
+}
+
+.settings-profile-info__name {
+  font-size: 18px;
+  font-weight: 700;
   color: var(--color-gray-900);
 }
 
-.settings-card__email {
+.settings-profile-info__email {
   font-size: 14px;
   color: var(--color-gray-500);
+  margin-top: 2px;
 }
 
-.settings-card__change-photo {
+.settings-profile-info__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+
+/* ---------- Divider ---------- */
+.settings-divider {
+  height: 1px;
+  background: var(--color-gray-200);
+}
+
+/* ---------- Personal information section ---------- */
+.settings-section__title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-bottom: var(--space-1);
+}
+
+.settings-section__hint {
+  font-size: 13px;
+  color: var(--color-gray-500);
+  margin-bottom: var(--space-5);
+}
+
+.settings-section__hint--tight {
   margin-top: var(--space-1);
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-blue-600);
+  margin-bottom: 0;
 }
 
-.settings-card__change-photo:hover {
-  text-decoration: underline;
+/* ---------- Footer / save bar ---------- */
+.settings-footer {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--space-3);
+  align-items: flex-start;
+  padding: var(--space-5) var(--space-6);
+  background: var(--color-gray-50);
+  border-top: 1px solid var(--color-gray-200);
 }
 
-.settings-card__saved {
+@media (min-width: 640px) {
+  .settings-footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.settings-footer__buttons {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.settings-saved {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
   font-size: 14px;
-  font-weight: 500;
-  color: var(--color-green-600);
+  font-weight: 600;
+  color: var(--color-green-700);
+  background: var(--color-green-100);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  animation: settings-saved-fade-in 0.2s ease;
+}
+
+.settings-saved__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  background: var(--color-green-600);
+  color: var(--color-white);
+  font-size: 11px;
+}
+
+@keyframes settings-saved-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

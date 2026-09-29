@@ -58,6 +58,11 @@ select {
   width: 100%;
 }
 
+.btn-sm {
+  padding: 6px 14px;
+  font-size: 13px;
+}
+
 .btn-primary {
   background: var(--color-blue-600);
   color: var(--color-white);
@@ -230,6 +235,13 @@ select {
   font-size: 24px;
   font-weight: 700;
   color: var(--color-gray-900);
+  margin-bottom: var(--space-6);
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: var(--color-gray-500);
+  margin-top: -20px;
   margin-bottom: var(--space-6);
 }
 
